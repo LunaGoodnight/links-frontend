@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - "127.0.0.1:3004:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://links-api.yourdomain.com}
+    restart: unless-stopped
