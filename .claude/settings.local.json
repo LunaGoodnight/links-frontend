@@ -1,7 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker exec:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker compose build:*)",
+      "Bash(git -C /srv/projects/links-frontend status)",
+      "Bash(git -C /srv/projects/links-frontend diff)",
+      "Bash(git -C /srv/projects/links-frontend log --oneline -3)",
+      "Bash(git -C /srv/projects/links-frontend add Dockerfile compose.yaml)",
+      "Bash(git -C /srv/projects/links-frontend commit -m \"$\\(cat <<''EOF''\nfix: pass API URL as build arg for Next.js\n\nNEXT_PUBLIC_* env vars must be available at build time in Next.js.\nAdded ARG/ENV in Dockerfile and build args in compose.yaml.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /srv/projects/links-frontend push origin main)"
     ]
   }
 }
