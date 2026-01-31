@@ -2,7 +2,7 @@ import {getLinks} from '@/lib/api';
 import type {Link as LinkType} from '@/types/link';
 import Image from "next/image";
 
-const FEATURED_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
+const FEATURED_CATEGORIES = ['Miou','News', 'Streaming', 'Shopping', 'Funny', 'Music'];
 const LINKS_PER_CATEGORY = 12;
 
 function generateMockLinks(category: string, count: number): LinkType[] {
