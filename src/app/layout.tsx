@@ -34,7 +34,7 @@ export default function RootLayout({
               MomoLink
             </Link>
             <nav>
-              <Link href="/links" className="font-bold text-blue-700">
+              <Link href="/links" className="font-bold text-white">
               Links
             </Link>
             </nav>
