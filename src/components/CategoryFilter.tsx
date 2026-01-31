@@ -18,7 +18,7 @@ export function CategoryFilter({ categories, currentCategory }: CategoryFilterPr
     } else {
       params.delete('category');
     }
-    router.push(`/?${params.toString()}`);
+    router.push(`/links?${params.toString()}`);
   };
 
   return (

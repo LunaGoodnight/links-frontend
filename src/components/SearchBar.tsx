@@ -24,14 +24,14 @@ export function SearchBar({ initialSearch = '' }: SearchBarProps) {
     } else {
       params.delete('search');
     }
-    router.push(`/?${params.toString()}`);
+    router.push(`/links?${params.toString()}`);
   };
 
   const handleClear = () => {
     setSearch('');
     const params = new URLSearchParams(searchParams.toString());
     params.delete('search');
-    router.push(`/?${params.toString()}`);
+    router.push(`/links?${params.toString()}`);
   };
 
   return (
