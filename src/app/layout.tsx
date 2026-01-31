@@ -28,13 +28,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
       >
-        <header className="bg-white shadow-sm">
+        <header className="bg-blue-300 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex place-content-between items-center">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
+            <Link href="/" className="text-2xl font-bold text-white">
               MomoLink
             </Link>
             <nav>
-              <Link href="/links" className="font-bold text-blue-500">
+              <Link href="/links" className="font-bold text-blue-700">
               Links
             </Link>
             </nav>
