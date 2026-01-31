@@ -1,5 +1,6 @@
 import {getLinks} from '@/lib/api';
 import type {Link as LinkType} from '@/types/link';
+import Image from "next/image";
 
 const FEATURED_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
 const LINKS_PER_CATEGORY = 12;
@@ -41,7 +42,7 @@ export default async function Home() {
 
         <div>
             <div className="mb-5">
-                <img src="https://picsum.photos/600/200" alt="picsum"/>
+                <Image width={600} height={200} src="https://picsum.photos/600/200" alt="picsum"/>
             </div>
 
 
