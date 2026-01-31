@@ -15,7 +15,7 @@ export async function getLinks(params?: {
   const queryString = searchParams.toString();
   const url = `${API_URL}/api/links${queryString ? `?${queryString}` : ''}`;
 
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to fetch links');
   return res.json();
 }
