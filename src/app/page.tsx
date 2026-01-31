@@ -44,15 +44,6 @@ export default async function Home() {
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome</h1>
         <p className="text-gray-600 mb-4">Recommended links for you</p>
-        <Link
-          href="/links"
-          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Browse All Links
-          <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
       </div>
 
       {categoryLinks.map(({ category, links }) => (
