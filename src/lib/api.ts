@@ -21,19 +21,19 @@ export async function getLinks(params?: {
 }
 
 export async function getLink(id: number): Promise<Link> {
-  const res = await fetch(`${API_URL}/api/links/${id}`, { next: { revalidate: 60 } });
+  const res = await fetch(`${API_URL}/api/links/${id}`, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to fetch link');
   return res.json();
 }
 
 export async function getCategories(): Promise<string[]> {
-  const res = await fetch(`${API_URL}/api/categories`, { next: { revalidate: 60 } });
+  const res = await fetch(`${API_URL}/api/categories`, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to fetch categories');
   return res.json();
 }
 
 export async function getTags(): Promise<string[]> {
-  const res = await fetch(`${API_URL}/api/categories/tags`, { next: { revalidate: 60 } });
+  const res = await fetch(`${API_URL}/api/categories/tags`, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to fetch tags');
   return res.json();
 }
