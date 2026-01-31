@@ -2,6 +2,23 @@ import { getLinks, getCategories } from '@/lib/api';
 import { LinkGrid } from '@/components/LinkGrid';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { notFound } from 'next/navigation';
+import type { Link } from '@/types/link';
+
+const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
+
+function generateMockLinks(category: string, count: number): Link[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i + 1,
+    title: `${category} Link ${i + 1}`,
+    url: 'https://example.com',
+    description: `This is a sample ${category.toLowerCase()} link for preview purposes.`,
+    category,
+    tags: ['sample', category.toLowerCase()],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    order: i + 1,
+  }));
+}
 
 interface CategoryPageProps {
   params: Promise<{
@@ -22,10 +39,19 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
   const category = decodeURIComponent(slug);
 
-  const [links, categories] = await Promise.all([
-    getLinks({ category }),
-    getCategories(),
-  ]);
+  let links: Link[];
+  let categories: string[];
+
+  try {
+    [links, categories] = await Promise.all([
+      getLinks({ category }),
+      getCategories(),
+    ]);
+  } catch {
+    // Fallback to mock data when API is unavailable (for local development)
+    links = generateMockLinks(category, 6);
+    categories = MOCK_CATEGORIES;
+  }
 
   if (!categories.includes(category)) {
     notFound();

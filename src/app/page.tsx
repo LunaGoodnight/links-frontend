@@ -1,18 +1,41 @@
 import Link from 'next/link';
 import { LinkCard } from '@/components/LinkCard';
 import { getLinks } from '@/lib/api';
+import type { Link as LinkType } from '@/types/link';
 
 const FEATURED_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
 const LINKS_PER_CATEGORY = 6;
 
+function generateMockLinks(category: string, count: number): LinkType[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i + 1,
+    title: `${category} Link ${i + 1}`,
+    url: 'https://example.com',
+    description: `This is a sample ${category.toLowerCase()} link for preview purposes.`,
+    category,
+    tags: ['sample', category.toLowerCase()],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    order: i + 1,
+  }));
+}
+
 export default async function Home() {
   const categoryLinks = await Promise.all(
     FEATURED_CATEGORIES.map(async (category) => {
-      const links = await getLinks({ category });
-      return {
-        category,
-        links: links.slice(0, LINKS_PER_CATEGORY),
-      };
+      try {
+        const links = await getLinks({ category });
+        return {
+          category,
+          links: links.slice(0, LINKS_PER_CATEGORY),
+        };
+      } catch {
+        // Fallback to mock data when API is unavailable (for local development)
+        return {
+          category,
+          links: generateMockLinks(category, LINKS_PER_CATEGORY),
+        };
+      }
     })
   );
 
