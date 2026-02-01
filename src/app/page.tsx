@@ -61,7 +61,7 @@ export default async function Home() {
                                             href={link.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-blue-400 font-medium hover:text-blue-600 hover:underline truncate block"
+                                            className="text-blue-400 font-medium hover:text-blue-600 truncate block"
                                         >
                                             {link.title}
                                         </a>
