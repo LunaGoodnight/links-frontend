@@ -5,7 +5,7 @@ import { CategoryFilter } from '@/components/CategoryFilter';
 import { SearchBar } from '@/components/SearchBar';
 import type { Link } from '@/types/link';
 
-const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
+const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music', 'Tech', 'Gaming', 'Sports', 'Travel', 'Food', 'Health', 'Finance', 'Education', 'Art', 'Science', 'Movies', 'Books', 'Podcasts', 'Photography', 'Design', 'Programming', 'AI', 'Crypto', 'Startups', 'Marketing', 'Productivity', 'Lifestyle', 'Fashion', 'Automotive', 'Real Estate'];
 
 function generateMockLinks(count: number): Link[] {
   return Array.from({ length: count }, (_, i) => ({
@@ -46,15 +46,15 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
     ]);
   } catch {
     // Fallback to mock data when API is unavailable (for local development)
-    links = generateMockLinks(12);
+    links = generateMockLinks(50);
     categories = MOCK_CATEGORIES;
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:h-[calc(100vh-120px)]">
+    <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-72px)]">
       {/* Desktop Sidebar */}
       {categories.length > 0 && (
-        <aside className="hidden lg:flex lg:flex-col w-56 flex-shrink-0 lg:overflow-y-auto custom-scrollbar">
+        <aside className="hidden lg:flex lg:flex-col w-64 flex-shrink-0 lg:overflow-y-auto custom-scrollbar p-6">
           <Suspense fallback={<div className="h-64 w-full bg-gray-200 animate-pulse rounded-lg" />}>
             <CategoryFilter categories={categories} currentCategory={params.category} variant="sidebar" />
           </Suspense>
@@ -62,7 +62,7 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 min-w-0 space-y-6 lg:overflow-y-auto custom-scrollbar">
+      <div className="flex-1 min-w-0 space-y-6 lg:overflow-y-auto custom-scrollbar p-6">
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
           <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse rounded-lg" />}>
             <SearchBar initialSearch={params.search} />

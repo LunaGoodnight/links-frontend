@@ -4,7 +4,7 @@ import { CategoryFilter } from '@/components/CategoryFilter';
 import { notFound } from 'next/navigation';
 import type { Link } from '@/types/link';
 
-const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music'];
+const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music', 'Tech', 'Gaming', 'Sports', 'Travel', 'Food', 'Health', 'Finance', 'Education', 'Art', 'Science', 'Movies', 'Books', 'Podcasts', 'Photography', 'Design', 'Programming', 'AI', 'Crypto', 'Startups', 'Marketing', 'Productivity', 'Lifestyle', 'Fashion', 'Automotive', 'Real Estate'];
 
 function generateMockLinks(category: string, count: number): Link[] {
   return Array.from({ length: count }, (_, i) => ({
@@ -49,7 +49,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     ]);
   } catch {
     // Fallback to mock data when API is unavailable (for local development)
-    links = generateMockLinks(category, 6);
+    links = generateMockLinks(category, 30);
     categories = MOCK_CATEGORIES;
   }
 
@@ -58,14 +58,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:h-[calc(100vh-120px)]">
+    <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-72px)]">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:flex-col w-56 flex-shrink-0 lg:overflow-y-auto custom-scrollbar">
+      <aside className="hidden lg:flex lg:flex-col w-64 flex-shrink-0 lg:overflow-y-auto custom-scrollbar p-6">
         <CategoryFilter categories={categories} currentCategory={category} variant="sidebar" />
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 min-w-0 space-y-6 lg:overflow-y-auto custom-scrollbar">
+      <div className="flex-1 min-w-0 space-y-6 lg:overflow-y-auto custom-scrollbar p-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">{category}</h1>
           <p className="text-gray-600">{links.length} links in this category</p>
