@@ -13,8 +13,8 @@ export function LinkCard({ link }: LinkCardProps) {
       rel="noopener noreferrer"
       className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
     >
-      {link.imageUrl && (
-        <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+      <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+        {link.imageUrl ? (
           <Image
             src={link.imageUrl}
             alt={link.title}
@@ -22,8 +22,12 @@ export function LinkCard({ link }: LinkCardProps) {
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-        </div>
-      )}
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+            no image
+          </div>
+        )}
+      </div>
       <div className="p-4">
         <h3 className="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
           {link.title}
