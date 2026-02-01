@@ -16,24 +16,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Links",
   description: "A curated collection of useful links",
-  openGraph: {
-    title: "Links",
-    description: "A curated collection of useful links",
-    images: [
-      {
-        url: "/ogimage.jpg",
-        width: 1200,
-        height: 630,
-        alt: "MomoLink",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Links",
-    description: "A curated collection of useful links",
-    images: ["/ogimage.jpg"],
-  },
 };
 
 export default function RootLayout({
