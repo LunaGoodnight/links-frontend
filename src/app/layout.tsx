@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+   "https://links.vividcats.org"
+  ),
   title: "Links",
   description: "A curated collection of useful links",
 };
