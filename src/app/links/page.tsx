@@ -51,20 +51,37 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse rounded-lg" />}>
-          <SearchBar initialSearch={params.search} />
-        </Suspense>
-      </div>
-
+    <div className="flex flex-col lg:flex-row gap-6">
+      {/* Desktop Sidebar */}
       {categories.length > 0 && (
-        <Suspense fallback={<div className="h-10 w-full bg-gray-200 animate-pulse rounded-lg" />}>
-          <CategoryFilter categories={categories} currentCategory={params.category} />
-        </Suspense>
+        <aside className="hidden lg:block w-56 flex-shrink-0">
+          <div className="sticky top-6">
+            <Suspense fallback={<div className="h-64 w-full bg-gray-200 animate-pulse rounded-lg" />}>
+              <CategoryFilter categories={categories} currentCategory={params.category} variant="sidebar" />
+            </Suspense>
+          </div>
+        </aside>
       )}
 
-      <LinkGrid links={links} />
+      {/* Main Content */}
+      <div className="flex-1 min-w-0 space-y-6">
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse rounded-lg" />}>
+            <SearchBar initialSearch={params.search} />
+          </Suspense>
+        </div>
+
+        {/* Mobile Category Filter */}
+        {categories.length > 0 && (
+          <div className="lg:hidden">
+            <Suspense fallback={<div className="h-10 w-full bg-gray-200 animate-pulse rounded-lg" />}>
+              <CategoryFilter categories={categories} currentCategory={params.category} />
+            </Suspense>
+          </div>
+        )}
+
+        <LinkGrid links={links} />
+      </div>
     </div>
   );
 }

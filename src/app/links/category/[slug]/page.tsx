@@ -58,15 +58,28 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">{category}</h1>
-        <p className="text-gray-600">{links.length} links in this category</p>
+    <div className="flex flex-col lg:flex-row gap-6">
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:block w-56 flex-shrink-0">
+        <div className="sticky top-6">
+          <CategoryFilter categories={categories} currentCategory={category} variant="sidebar" />
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 min-w-0 space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">{category}</h1>
+          <p className="text-gray-600">{links.length} links in this category</p>
+        </div>
+
+        {/* Mobile Category Filter */}
+        <div className="lg:hidden">
+          <CategoryFilter categories={categories} currentCategory={category} />
+        </div>
+
+        <LinkGrid links={links} />
       </div>
-
-      <CategoryFilter categories={categories} currentCategory={category} />
-
-      <LinkGrid links={links} />
     </div>
   );
 }
