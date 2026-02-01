@@ -15,7 +15,9 @@
       "Bash(npm run build:*)",
       "Bash(magick:*)",
       "Bash(pnpm add:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(powershell -Command \"\\(Get-Item ''D:\\\\side-project\\\\links-frontend\\\\src\\\\app\\\\opengraph-image.jpg''\\).Length / 1KB\")",
+      "Bash(npx image-size:*)"
     ]
   }
 }
