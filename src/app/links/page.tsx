@@ -51,20 +51,18 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
+    <div className="flex flex-col lg:flex-row gap-6 lg:h-[calc(100vh-120px)]">
       {/* Desktop Sidebar */}
       {categories.length > 0 && (
-        <aside className="hidden lg:block w-56 flex-shrink-0">
-          <div className="sticky top-6">
-            <Suspense fallback={<div className="h-64 w-full bg-gray-200 animate-pulse rounded-lg" />}>
-              <CategoryFilter categories={categories} currentCategory={params.category} variant="sidebar" />
-            </Suspense>
-          </div>
+        <aside className="hidden lg:flex lg:flex-col w-56 flex-shrink-0 lg:overflow-y-auto">
+          <Suspense fallback={<div className="h-64 w-full bg-gray-200 animate-pulse rounded-lg" />}>
+            <CategoryFilter categories={categories} currentCategory={params.category} variant="sidebar" />
+          </Suspense>
         </aside>
       )}
 
       {/* Main Content */}
-      <div className="flex-1 min-w-0 space-y-6">
+      <div className="flex-1 min-w-0 space-y-6 lg:overflow-y-auto">
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
           <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse rounded-lg" />}>
             <SearchBar initialSearch={params.search} />
