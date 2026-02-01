@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "A curated collection of useful links",
     images: [
       {
-        url: "/ogimage.png",
+        url: "/ogimage.jpg",
         width: 1200,
         height: 630,
         alt: "MomoLink",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Links",
     description: "A curated collection of useful links",
-    images: ["/ogimage.png"],
+    images: ["/ogimage.jpg"],
   },
 };
 
