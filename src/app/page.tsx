@@ -1,23 +1,8 @@
 import {getLinks} from '@/lib/api';
-import type {Link as LinkType} from '@/types/link';
+import {FEATURED_CATEGORIES, generateMockLinks, LINKS_PER_CATEGORY} from '@/lib/mockData';
+import {getQuote, quoteList} from '@/lib/quotes';
 import Image from "next/image";
-
-const FEATURED_CATEGORIES = ['Miou','News', 'Streaming', 'Shopping', 'Funny', 'Music'];
-const LINKS_PER_CATEGORY = 12;
-
-function generateMockLinks(category: string, count: number): LinkType[] {
-    return Array.from({length: count}, (_, i) => ({
-        id: i + 1,
-        title: `${category} Link ${i + 1}`,
-        url: 'https://example.com',
-        description: `This is a sample ${category.toLowerCase()} link for preview purposes.`,
-        category,
-        tags: ['sample', category.toLowerCase()],
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-        order: i + 1,
-    }));
-}
+import Link from "next/link";
 
 export default async function Home() {
     const categoryLinks = await Promise.all(
@@ -39,15 +24,16 @@ export default async function Home() {
     );
 
     return (
-
         <div>
-            <div className="mb-5">
-                <Image width={600} height={200} src="https://picsum.photos/600/200" alt="picsum"/>
+            <div className="mb-5 flex gap-6 items-end pb-10">
+                <div className="flex flex-col gap-4">
+                    <Image width={600} height={200} src="https://picsum.photos/600/200" alt="picsum"/>
+                    <div>{getQuote(quoteList)}</div>
+                </div>
+                <Link href="/links" className="text-blue-500 font-bold">See more links</Link>
             </div>
 
-
             <div className="space-y-12 flex flex-wrap gap-14">
-
                 {categoryLinks.map(({category, links}) => (
                     links.length > 0 && (
                         <section key={category}>
@@ -73,6 +59,5 @@ export default async function Home() {
                 ))}
             </div>
         </div>
-
     );
 }
