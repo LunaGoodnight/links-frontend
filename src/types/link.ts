@@ -3,10 +3,20 @@ export interface Link {
   title: string;
   url: string;
   description?: string;
-  category?: string;
+  categoryId?: number;
+  categoryName?: string;
   tags: string[];
   imageUrl?: string;
   createdAt: string;
   updatedAt: string;
   order: number;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+  description?: string;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
 }

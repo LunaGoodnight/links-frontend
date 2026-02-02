@@ -1,14 +1,14 @@
-import { Link } from '@/types/link';
+import { Link, Category } from '@/types/link';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5010';
 
 export async function getLinks(params?: {
-  category?: string;
+  categoryId?: number;
   tag?: string;
   search?: string;
 }): Promise<Link[]> {
   const searchParams = new URLSearchParams();
-  if (params?.category) searchParams.set('category', params.category);
+  if (params?.categoryId) searchParams.set('categoryId', params.categoryId.toString());
   if (params?.tag) searchParams.set('tag', params.tag);
   if (params?.search) searchParams.set('search', params.search);
 
@@ -26,7 +26,7 @@ export async function getLink(id: number): Promise<Link> {
   return res.json();
 }
 
-export async function getCategories(): Promise<string[]> {
+export async function getCategories(): Promise<Category[]> {
   const res = await fetch(`${API_URL}/api/categories`, { cache: "no-store" });
   if (!res.ok) throw new Error('Failed to fetch categories');
   return res.json();

@@ -40,9 +40,9 @@ export function LinkCard({ link }: LinkCardProps) {
           <p className="mt-2 text-gray-600 text-sm line-clamp-3">{link.description}</p>
         )}
         <div className="mt-3 flex flex-wrap gap-2">
-          {link.category && (
+          {link.categoryName && (
             <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-              {link.category}
+              {link.categoryName}
             </span>
           )}
           {link.tags.slice(0, 3).map((tag) => (

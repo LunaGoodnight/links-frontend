@@ -3,9 +3,15 @@ import { getLinks, getCategories } from '@/lib/api';
 import { LinkGrid } from '@/components/LinkGrid';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { SearchBar } from '@/components/SearchBar';
-import type { Link } from '@/types/link';
+import type { Link, Category } from '@/types/link';
 
-const MOCK_CATEGORIES = ['News', 'Streaming', 'Shopping', 'Funny', 'Music', 'Tech', 'Gaming', 'Sports', 'Travel', 'Food', 'Health', 'Finance', 'Education', 'Art', 'Science', 'Movies', 'Books', 'Podcasts', 'Photography', 'Design', 'Programming', 'AI', 'Crypto', 'Startups', 'Marketing', 'Productivity', 'Lifestyle', 'Fashion', 'Automotive', 'Real Estate'];
+const MOCK_CATEGORIES: Category[] = [
+  { id: 1, name: 'News', order: 0, createdAt: '', updatedAt: '' },
+  { id: 2, name: 'Streaming', order: 1, createdAt: '', updatedAt: '' },
+  { id: 3, name: 'Shopping', order: 2, createdAt: '', updatedAt: '' },
+  { id: 4, name: 'Tech', order: 3, createdAt: '', updatedAt: '' },
+  { id: 5, name: 'Gaming', order: 4, createdAt: '', updatedAt: '' },
+];
 
 function generateMockLinks(count: number): Link[] {
   return Array.from({ length: count }, (_, i) => ({
@@ -13,7 +19,8 @@ function generateMockLinks(count: number): Link[] {
     title: `Sample Link ${i + 1}`,
     url: 'https://example.com',
     description: 'This is a sample link for preview purposes.',
-    category: MOCK_CATEGORIES[i % MOCK_CATEGORIES.length],
+    categoryId: MOCK_CATEGORIES[i % MOCK_CATEGORIES.length].id,
+    categoryName: MOCK_CATEGORIES[i % MOCK_CATEGORIES.length].name,
     tags: ['sample', 'preview'],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -23,7 +30,7 @@ function generateMockLinks(count: number): Link[] {
 
 interface LinksPageProps {
   searchParams: Promise<{
-    category?: string;
+    categoryId?: string;
     tag?: string;
     search?: string;
   }>;
@@ -31,14 +38,15 @@ interface LinksPageProps {
 
 export default async function LinksPage({ searchParams }: LinksPageProps) {
   const params = await searchParams;
+  const categoryId = params.categoryId ? parseInt(params.categoryId, 10) : undefined;
 
   let links: Link[];
-  let categories: string[];
+  let categories: Category[];
 
   try {
     [links, categories] = await Promise.all([
       getLinks({
-        category: params.category,
+        categoryId,
         tag: params.tag,
         search: params.search,
       }),
@@ -56,7 +64,7 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
       {categories.length > 0 && (
         <aside className="hidden lg:flex lg:flex-col w-64 flex-shrink-0 lg:overflow-y-auto custom-scrollbar p-6">
           <Suspense fallback={<div className="h-64 w-full bg-gray-200 animate-pulse rounded-lg" />}>
-            <CategoryFilter categories={categories} currentCategory={params.category} variant="sidebar" />
+            <CategoryFilter categories={categories} currentCategoryId={categoryId} variant="sidebar" />
           </Suspense>
         </aside>
       )}
@@ -73,7 +81,7 @@ export default async function LinksPage({ searchParams }: LinksPageProps) {
         {categories.length > 0 && (
           <div className="lg:hidden">
             <Suspense fallback={<div className="h-10 w-full bg-gray-200 animate-pulse rounded-lg" />}>
-              <CategoryFilter categories={categories} currentCategory={params.category} />
+              <CategoryFilter categories={categories} currentCategoryId={categoryId} />
             </Suspense>
           </div>
         )}

@@ -9,7 +9,7 @@ export default async function Home() {
     const categoryLinks = await Promise.all(
         FEATURED_CATEGORIES.map(async (category) => {
             try {
-                const links = await getLinks({category});
+                const links = await getLinks({categoryId: category.id});
                 return {
                     category,
                     links: links.slice(0, LINKS_PER_CATEGORY),
@@ -37,9 +37,9 @@ export default async function Home() {
             <div className="space-y-12 flex flex-wrap gap-14">
                 {categoryLinks.map(({category, links}) => (
                     links.length > 0 && (
-                        <section key={category}>
+                        <section key={category.id}>
                             <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-2xl font-bold text-blue-500">{category}</h2>
+                                <h2 className="text-2xl font-bold text-blue-500">{category.name}</h2>
                             </div>
                             <ul className="flex flex-col gap-3 mt-4">
                                 {links.map((link) => (

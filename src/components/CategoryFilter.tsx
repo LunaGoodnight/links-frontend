@@ -1,23 +1,24 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Category } from '@/types/link';
 
 interface CategoryFilterProps {
-  categories: string[];
-  currentCategory?: string;
+  categories: Category[];
+  currentCategoryId?: number;
   variant?: 'horizontal' | 'sidebar';
 }
 
-export function CategoryFilter({ categories, currentCategory, variant = 'horizontal' }: CategoryFilterProps) {
+export function CategoryFilter({ categories, currentCategoryId, variant = 'horizontal' }: CategoryFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleCategoryChange = (category: string | null) => {
+  const handleCategoryChange = (categoryId: number | null) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (category) {
-      params.set('category', category);
+    if (categoryId) {
+      params.set('categoryId', categoryId.toString());
     } else {
-      params.delete('category');
+      params.delete('categoryId');
     }
     router.push(`/links?${params.toString()}`);
   };
@@ -31,7 +32,7 @@ export function CategoryFilter({ categories, currentCategory, variant = 'horizon
         <button
           onClick={() => handleCategoryChange(null)}
           className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-            !currentCategory
+            !currentCategoryId
               ? 'bg-blue-600 text-white'
               : 'text-gray-700 hover:bg-gray-100'
           }`}
@@ -40,15 +41,15 @@ export function CategoryFilter({ categories, currentCategory, variant = 'horizon
         </button>
         {categories.map((category) => (
           <button
-            key={category}
-            onClick={() => handleCategoryChange(category)}
+            key={category.id}
+            onClick={() => handleCategoryChange(category.id)}
             className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-              currentCategory === category
+              currentCategoryId === category.id
                 ? 'bg-blue-600 text-white'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
-            {category}
+            {category.name}
           </button>
         ))}
       </nav>
@@ -60,7 +61,7 @@ export function CategoryFilter({ categories, currentCategory, variant = 'horizon
       <button
         onClick={() => handleCategoryChange(null)}
         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-          !currentCategory
+          !currentCategoryId
             ? 'bg-blue-600 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }`}
@@ -69,15 +70,15 @@ export function CategoryFilter({ categories, currentCategory, variant = 'horizon
       </button>
       {categories.map((category) => (
         <button
-          key={category}
-          onClick={() => handleCategoryChange(category)}
+          key={category.id}
+          onClick={() => handleCategoryChange(category.id)}
           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-            currentCategory === category
+            currentCategoryId === category.id
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
-          {category}
+          {category.name}
         </button>
       ))}
     </div>
