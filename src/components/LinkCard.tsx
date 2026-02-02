@@ -1,5 +1,8 @@
+'use client';
+
 import { Link } from '@/types/link';
 import Image from 'next/image';
+import { trackOutboundClick } from '@/lib/analytics';
 
 interface LinkCardProps {
   link: Link;
@@ -12,6 +15,7 @@ export function LinkCard({ link }: LinkCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      onClick={() => trackOutboundClick(link.title, link.url)}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
         {link.imageUrl ? (

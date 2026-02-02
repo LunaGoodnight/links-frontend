@@ -3,6 +3,7 @@ import {FEATURED_CATEGORIES, generateMockLinks, LINKS_PER_CATEGORY} from '@/lib/
 import {getQuote, quoteList} from '@/lib/quotes';
 import Image from "next/image";
 import Link from "next/link";
+import {OutboundLink} from '@/components/OutboundLink';
 
 export default async function Home() {
     const categoryLinks = await Promise.all(
@@ -43,14 +44,13 @@ export default async function Home() {
                             <ul className="flex flex-col gap-3 mt-4">
                                 {links.map((link) => (
                                     <li key={link.id}>
-                                        <a
+                                        <OutboundLink
                                             href={link.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                            linkText={link.title}
                                             className="text-blue-400 font-medium hover:text-blue-600 truncate block"
                                         >
                                             {link.title}
-                                        </a>
+                                        </OutboundLink>
                                     </li>
                                 ))}
                             </ul>
