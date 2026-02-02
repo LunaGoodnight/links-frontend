@@ -17,7 +17,14 @@
       "Bash(pnpm add:*)",
       "Bash(node -e:*)",
       "Bash(powershell -Command \"\\(Get-Item ''D:\\\\side-project\\\\links-frontend\\\\src\\\\app\\\\opengraph-image.jpg''\\).Length / 1KB\")",
-      "Bash(npx image-size:*)"
+      "Bash(npx image-size:*)",
+      "WebSearch",
+      "Bash(npx next build:*)",
+      "Bash(pnpm run build:*)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "next-devtools"
+  ]
 }
