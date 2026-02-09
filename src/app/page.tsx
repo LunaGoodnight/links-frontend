@@ -47,7 +47,7 @@ export default async function Home() {
                                         <OutboundLink
                                             href={link.url}
                                             linkText={link.title}
-                                            className="text-blue-400 font-medium hover:text-blue-600 truncate block"
+                                            className="text-blue-400 font-semibold hover:text-blue-600 truncate block"
                                         >
                                             {link.title}
                                         </OutboundLink>
