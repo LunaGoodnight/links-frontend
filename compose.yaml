@@ -1,9 +1,6 @@
 services:
   frontend:
-    build:
-      context: .
-      args:
-        - NEXT_PUBLIC_API_URL=https://api.links.vividcats.org
+    image: catsheue/links-frontend:latest
     ports:
       - "127.0.0.1:3004:3000"
     restart: unless-stopped
