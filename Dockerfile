@@ -28,7 +28,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@9.15.5 --activate
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs
