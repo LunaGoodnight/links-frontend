@@ -3,7 +3,7 @@ import type {Link as LinkType, Category} from '@/types/link';
 export const FEATURED_CATEGORIES: Category[] = [
     { id: 17, name: 'Miou', order: 0, createdAt: '', updatedAt: '' },
     { id: 19, name: 'News', order: 1, createdAt: '', updatedAt: '' },
-    { id: 19, name: 'Games', order: 1, createdAt: '', updatedAt: '' },
+    { id: 13, name: 'Games', order: 1, createdAt: '', updatedAt: '' },
     { id: 26, name: 'Streaming', order: 2, createdAt: '', updatedAt: '' },
     { id: 24, name: 'Shopping', order: 3, createdAt: '', updatedAt: '' },
     { id: 12, name: 'Funny', order: 4, createdAt: '', updatedAt: '' },
