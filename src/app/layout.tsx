@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
       >
         <header className="bg-blue-300 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex place-content-between items-center">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex place-content-between items-center">
             <Link href="/" className="text-2xl font-bold text-white">
               MomoLink
             </Link>
@@ -45,7 +45,7 @@ export default function RootLayout({
             </nav>
           </div>
         </header>
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>
       </body>
