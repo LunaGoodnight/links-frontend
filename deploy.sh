@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e  # Exit on any error
 
 # ============================================
 # CHANGE THESE 3 VALUES:
@@ -10,15 +9,15 @@ VPS_PORT="11233"
 VPS_PATH="/srv/projects/links-frontend"
 # ============================================
 
-IMAGE_NAME="novel-frontend"
+IMAGE_NAME="links-frontend"
 FULL_IMAGE="${USERNAME}/${IMAGE_NAME}:latest"
-API_URL="https://api.novel.vividcats.org"
+API_URL="https://api.links.vividcats.org"
 
 echo "Step 1: Building Docker image..."
-docker build --no-cache --build-arg NEXT_PUBLIC_API_URL="${API_URL}" --build-arg NEXT_PUBLIC_GOOGLE_CLIENT_ID="${NEXT_PUBLIC_GOOGLE_CLIENT_ID}" -t "${FULL_IMAGE}" .
+docker build --no-cache --build-arg NEXT_PUBLIC_API_URL=${API_URL} -t ${FULL_IMAGE} .
 
 echo "Step 2: Pushing to Docker Hub..."
-docker push "${FULL_IMAGE}"
+docker push ${FULL_IMAGE}
 
 echo "Step 3: Deploying to VPS..."
 ssh -p "${VPS_PORT}" "root@${VPS_HOST}" << EOF
@@ -30,3 +29,5 @@ ssh -p "${VPS_PORT}" "root@${VPS_HOST}" << EOF
 EOF
 
 echo "Done!"
+
+
