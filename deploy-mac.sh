@@ -7,16 +7,15 @@ set -e  # Exit on any error
 USERNAME="catsheue"
 VPS_HOST="178.128.16.199"
 VPS_PORT="11233"
-VPS_PATH="/srv/projects/star"
+VPS_PATH="/srv/projects/links-frontend"
 # ============================================
 
-IMAGE_NAME="star"
+IMAGE_NAME="links-frontend"
 FULL_IMAGE="${USERNAME}/${IMAGE_NAME}:latest"
-API_URL="https://api.star.vividcats.org"
-NEXT_PUBLIC_GOOGLE_CLIENT_ID="7989124817-8vnvtqrag0fj1sa2g27slukrd16ooc2l.apps.googleusercontent.com"
+API_URL="https://api.links.vividcats.org"
 
 echo "Step 1: Building Docker image..."
-docker build --no-cache --build-arg NEXT_PUBLIC_API_URL="${API_URL}" --build-arg NEXT_PUBLIC_GOOGLE_CLIENT_ID="${NEXT_PUBLIC_GOOGLE_CLIENT_ID}" -t "${FULL_IMAGE}" .
+docker build --no-cache --platform linux/amd64 --build-arg NEXT_PUBLIC_API_URL="${API_URL}" -t "${FULL_IMAGE}" .
 
 echo "Step 2: Pushing to Docker Hub..."
 docker push "${FULL_IMAGE}"
