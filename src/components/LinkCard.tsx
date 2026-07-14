@@ -14,7 +14,7 @@ export function LinkCard({ link }: LinkCardProps) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
       onClick={() => trackOutboundClick(link.title, link.url)}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
@@ -33,11 +33,11 @@ export function LinkCard({ link }: LinkCardProps) {
         )}
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+        <h3 className="font-semibold text-lg text-gray-900 dark:text-amber-50 group-hover:text-blue-600 transition-colors line-clamp-2">
           {link.title}
         </h3>
         {link.description && (
-          <p className="mt-2 text-gray-600 text-sm line-clamp-3">{link.description}</p>
+          <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm line-clamp-3">{link.description}</p>
         )}
         <div className="mt-3 flex flex-wrap gap-2">
           {link.categoryName && (

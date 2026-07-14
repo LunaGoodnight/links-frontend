@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* Make the dark: variant class-based (toggled by ThemeToggle) instead of media-query based */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {

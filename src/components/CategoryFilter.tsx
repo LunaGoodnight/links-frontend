@@ -34,7 +34,7 @@ export function CategoryFilter({ categories, currentCategoryId, variant = 'horiz
           className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             !currentCategoryId
               ? 'bg-blue-600 text-white'
-              : 'text-gray-700 hover:bg-gray-100'
+              : 'text-gray-700 hover:bg-gray-100 '
           }`}
         >
           All Links
@@ -46,7 +46,7 @@ export function CategoryFilter({ categories, currentCategoryId, variant = 'horiz
             className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
               currentCategoryId === category.id
                 ? 'bg-blue-600 text-white'
-                : 'text-gray-700 hover:bg-gray-100'
+                : 'text-gray-700 hover:bg-gray-100 dark:text-gray-400'
             }`}
           >
             {category.name}
