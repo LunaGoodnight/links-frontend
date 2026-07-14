@@ -39,7 +39,7 @@ export default async function Home() {
                     links.length > 0 && (
                         <section key={category.id}>
                             <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-2xl font-bold text-blue-500">{category.name}</h2>
+                                <h2 className="text-2xl font-bold text-blue-500 dark:text-gray-300">{category.name}</h2>
                             </div>
                             <ul className="flex flex-col gap-3 mt-4">
                                 {links.map((link) => (
@@ -47,7 +47,7 @@ export default async function Home() {
                                         <OutboundLink
                                             href={link.url}
                                             linkText={link.title}
-                                            className="text-blue-400 font-semibold hover:text-blue-600 truncate block"
+                                            className="text-blue-400 dark:text-gray-400 font-semibold hover:text-blue-600 dark:hover:text-gray-100 truncate block"
                                         >
                                             {link.title}
                                         </OutboundLink>
