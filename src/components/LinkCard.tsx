@@ -33,7 +33,7 @@ export function LinkCard({ link }: LinkCardProps) {
         )}
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-lg text-gray-900 dark:text-amber-50 group-hover:text-blue-600 transition-colors line-clamp-2">
+        <h3 className="font-semibold text-lg text-gray-900 dark:text-amber-50 group-hover:text-blue-600 dark:group-hover:text-amber-200 transition-colors line-clamp-2">
           {link.title}
         </h3>
         {link.description && (
