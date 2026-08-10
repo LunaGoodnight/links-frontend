@@ -3,14 +3,24 @@
 /* Make the dark: variant class-based (toggled by ThemeToggle) instead of media-query based */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Page background is driven by these vars only. The `body` rule below is
+   unlayered, so it beats any `bg-*` utility on <body> — set the colour here. */
 :root {
-  --background: #ffffff;
+  --background: #f9fafb; /* gray-50 */
   --foreground: #171717;
+  /* Tells the browser which palette to use for native UI (scrollbars, form
+     controls, the canvas behind the page) so they don't stay light in dark mode */
+  color-scheme: light;
+  --scrollbar-thumb: #e5e7eb;
+  --scrollbar-thumb-hover: #d1d5db;
 }
 
 .dark {
-  --background: #0a0a0a;
+  --background: #030712; /* gray-950 */
   --foreground: #ededed;
+  color-scheme: dark;
+  --scrollbar-thumb: #374151;
+  --scrollbar-thumb-hover: #4b5563;
 }
 
 @theme inline {
@@ -37,12 +47,12 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
+  background: var(--scrollbar-thumb);
   border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #d1d5db;
+  background: var(--scrollbar-thumb-hover);
 }
 
 .custom-scrollbar::-webkit-scrollbar-button {
@@ -52,5 +62,5 @@ body {
 /* Firefox */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #e5e7eb transparent;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }

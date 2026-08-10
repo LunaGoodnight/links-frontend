@@ -29,9 +29,14 @@ export default async function Home() {
             <div className="mb-5 flex gap-6 items-end pb-10">
                 <div className="flex flex-col gap-4">
                     <Image width={600} height={200} src="https://picsum.photos/600/200" alt="picsum"/>
-                    <div>{getQuote(quoteList)}</div>
+                    <div className="text-gray-700 dark:text-gray-300">{getQuote(quoteList)}</div>
                 </div>
-                <Link href="/links" className="text-blue-500 font-bold">See more links</Link>
+                <Link
+                        href="/links"
+                        className="font-bold transition-colors text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                    >
+                        See more links
+                    </Link>
             </div>
 
             <div className="space-y-12 flex flex-wrap gap-14">
@@ -47,7 +52,7 @@ export default async function Home() {
                                         <OutboundLink
                                             href={link.url}
                                             linkText={link.title}
-                                            className="text-blue-400 dark:text-gray-400 font-semibold hover:text-blue-600 dark:hover:text-gray-100 truncate block"
+                                            className="text-blue-400 dark:text-gray-400 font-semibold hover:text-blue-600 dark:hover:text-gray-100 transition-colors truncate block"
                                         >
                                             {link.title}
                                         </OutboundLink>

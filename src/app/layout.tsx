@@ -46,18 +46,25 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
+      {/* Page background/foreground come from --background/--foreground in globals.css */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-gray-950 min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        <header className="bg-blue-300 dark:bg-gray-800 shadow-sm">
+        <header className="bg-blue-300 dark:bg-gray-800 shadow-sm dark:border-b dark:border-white/10">
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex place-content-between items-center">
-            <Link href="/" className="text-2xl font-bold text-white">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-white transition-colors hover:text-blue-50 dark:text-gray-100 dark:hover:text-white"
+            >
               MomoLink
             </Link>
             <nav className="flex items-center gap-4">
-              <Link href="/links" className="font-bold text-white">
-              Links
-            </Link>
+              <Link
+                href="/links"
+                className="font-bold text-white px-3 py-2 rounded-full transition-colors hover:bg-white/20 dark:text-gray-100 dark:hover:bg-white/10 dark:hover:text-white"
+              >
+                Links
+              </Link>
               <ThemeToggle />
             </nav>
           </div>

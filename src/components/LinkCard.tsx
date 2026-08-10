@@ -14,10 +14,16 @@ export function LinkCard({ link }: LinkCardProps) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+      className="group block bg-white dark:bg-gray-800 rounded-lg overflow-hidden
+        shadow-md hover:shadow-lg
+        ring-1 ring-transparent dark:ring-white/10 dark:hover:ring-white/25
+        transition duration-200
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500
+        dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2
+        focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
       onClick={() => trackOutboundClick(link.title, link.url)}
     >
-      <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
+      <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700">
         {link.imageUrl ? (
           <Image
             src={link.imageUrl}
@@ -27,7 +33,7 @@ export function LinkCard({ link }: LinkCardProps) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+          <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-500 text-sm">
             no image
           </div>
         )}
@@ -41,14 +47,24 @@ export function LinkCard({ link }: LinkCardProps) {
         )}
         <div className="mt-3 flex flex-wrap gap-2">
           {link.categoryName && (
-            <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+            <span
+              className="px-2 py-1 text-xs rounded-full transition-colors
+                bg-blue-100 text-blue-800 group-hover:bg-blue-200
+                dark:bg-blue-500/15 dark:text-blue-300
+                dark:inset-ring dark:inset-ring-blue-400/25
+                dark:group-hover:bg-blue-500/25 dark:group-hover:text-blue-200"
+            >
               {link.categoryName}
             </span>
           )}
           {link.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+              className="px-2 py-1 text-xs rounded-full transition-colors
+                bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:text-gray-800
+                dark:bg-gray-700/60 dark:text-gray-300
+                dark:inset-ring dark:inset-ring-white/10
+                dark:group-hover:bg-gray-600/70 dark:group-hover:text-gray-100"
             >
               {tag}
             </span>

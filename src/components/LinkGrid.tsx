@@ -9,7 +9,7 @@ export function LinkGrid({ links }: LinkGridProps) {
   if (links.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">No links found</p>
+        <p className="text-gray-500 dark:text-gray-400 text-lg">No links found</p>
       </div>
     );
   }
