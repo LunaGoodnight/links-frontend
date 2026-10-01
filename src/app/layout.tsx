@@ -45,6 +45,12 @@ export default function RootLayout({
      <GoogleTagManager gtmId="GTM-NXMKBMJN" />
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Google AdSense Auto ads */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2367606842074628"
+          crossOrigin="anonymous"
+        />
       </head>
       {/* Page background/foreground come from --background/--foreground in globals.css */}
       <body
