@@ -15,7 +15,7 @@ FULL_IMAGE="${USERNAME}/${IMAGE_NAME}:latest"
 API_URL="https://api.links.vividcats.org"
 
 echo "Step 1: Building Docker image..."
-docker build --no-cache --platform linux/amd64 --build-arg NEXT_PUBLIC_API_URL="${API_URL}" -t "${FULL_IMAGE}" .
+docker build --pull --no-cache --platform linux/amd64 --build-arg NEXT_PUBLIC_API_URL="${API_URL}" -t "${FULL_IMAGE}" .
 
 echo "Step 2: Pushing to Docker Hub..."
 docker push "${FULL_IMAGE}"
