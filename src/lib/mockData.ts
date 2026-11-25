@@ -9,7 +9,7 @@ export const FEATURED_CATEGORIES: Category[] = [
     { id: 12, name: 'Funny', order: 4, createdAt: '', updatedAt: '' },
     { id: 18, name: 'Music', order: 5, createdAt: '', updatedAt: '' },
 ];
-export const LINKS_PER_CATEGORY = 12;
+export const LINKS_PER_CATEGORY = 20;
 
 export function generateMockLinks(category: Category, count: number): LinkType[] {
     return Array.from({length: count}, (_, i) => ({
